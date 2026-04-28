@@ -3,16 +3,9 @@ import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: `Contact — ${SITE.name}` },
-      { name: "description", content: `Get in touch with ${SITE.name} — full stack developer available for new projects.` },
-      { property: "og:title", content: `Contact — ${SITE.name}` },
-      { property: "og:description", content: `Get in touch with ${SITE.name} — full stack developer available for new projects.` },
-    ],
-  }),
   component: ContactPage,
 });
+
 
 function ContactPage() {
   return (

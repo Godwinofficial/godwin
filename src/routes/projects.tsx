@@ -5,16 +5,9 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { PROJECTS, PROJECT_FILTERS, SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/projects")({
-  head: () => ({
-    meta: [
-      { title: `Projects — ${SITE.name}` },
-      { name: "description", content: `Selected projects by ${SITE.name} — full stack apps built with React, Django, and Python.` },
-      { property: "og:title", content: `Projects — ${SITE.name}` },
-      { property: "og:description", content: `Selected projects by ${SITE.name} — full stack apps built with React, Django, and Python.` },
-    ],
-  }),
   component: ProjectsPage,
 });
+
 
 function ProjectsPage() {
   const [filter, setFilter] = useState<(typeof PROJECT_FILTERS)[number]>("All");

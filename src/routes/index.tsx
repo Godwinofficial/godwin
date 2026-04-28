@@ -5,19 +5,9 @@ import { SITE, PROJECTS, SKILLS, EXPERIENCE, TESTIMONIALS, FAQS } from "@/lib/si
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: `${SITE.name} — ${SITE.role}` },
-      {
-        name: "description",
-        content: SITE.shortBio,
-      },
-      { property: "og:title", content: `${SITE.name} — ${SITE.role}` },
-      { property: "og:description", content: SITE.shortBio },
-    ],
-  }),
   component: HomePage,
 });
+
 
 const MARQUEE_WORDS = [
   "React", "Django", "Python", "TypeScript", "Tailwind", "PostgreSQL",
@@ -222,7 +212,11 @@ function HomePage() {
             <Reveal delayMs={0}>
               <div className="flex flex-col gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="14" x="2" y="3" rx="2" />
+                    <line x1="8" x2="16" y1="21" y2="21" />
+                    <line x1="12" x2="12" y1="17" y2="21" />
+                  </svg>
                 </div>
                 <h3 className="font-display text-xl font-semibold text-foreground">Web & Mobile Apps</h3>
                 <p className="text-base leading-relaxed text-muted-foreground text-pretty">

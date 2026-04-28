@@ -3,16 +3,9 @@ import { Reveal } from "@/components/Reveal";
 import { SITE, SKILLS, EXPERIENCE } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: `About — ${SITE.name}` },
-      { name: "description", content: `About ${SITE.name}, a ${SITE.role} working with React and Django.` },
-      { property: "og:title", content: `About — ${SITE.name}` },
-      { property: "og:description", content: `About ${SITE.name}, a ${SITE.role} working with React and Django.` },
-    ],
-  }),
   component: AboutPage,
 });
+
 
 function AboutPage() {
   return (

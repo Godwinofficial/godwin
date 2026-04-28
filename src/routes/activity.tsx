@@ -4,16 +4,9 @@ import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/activity")({
-  head: () => ({
-    meta: [
-      { title: `Activity — ${SITE.name}` },
-      { name: "description", content: `Recent open source activity from ${SITE.name} on GitHub.` },
-      { property: "og:title", content: `Activity — ${SITE.name}` },
-      { property: "og:description", content: `Recent open source activity from ${SITE.name} on GitHub.` },
-    ],
-  }),
   component: ActivityPage,
 });
+
 
 type Repo = {
   id: number;
