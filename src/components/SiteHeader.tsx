@@ -16,11 +16,10 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-all ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      className={`sticky top-0 z-40 w-full transition-all ${scrolled
+        ? "border-b border-border bg-background/80 backdrop-blur-xl"
+        : "border-b border-transparent bg-transparent"
+        }`}
     >
       <div className="container-page flex h-16 items-center justify-between">
         <Link

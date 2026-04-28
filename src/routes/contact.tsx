@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { z } from "zod";
 import { Reveal } from "@/components/Reveal";
 import { SITE } from "@/lib/site";
 
@@ -16,46 +14,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000),
-});
-
-type FormState = "idle" | "submitting" | "success" | "error";
-
 function ContactPage() {
-  const [state, setState] = useState<FormState>("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setErrors({});
-    const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement).value,
-      email: (form.elements.namedItem("email") as HTMLInputElement).value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
-    };
-
-    const parsed = contactSchema.safeParse(data);
-    if (!parsed.success) {
-      const fieldErrors: Record<string, string> = {};
-      parsed.error.issues.forEach((iss) => {
-        const k = iss.path[0] as string;
-        if (!fieldErrors[k]) fieldErrors[k] = iss.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-
-    setState("submitting");
-    // Stub submission — wire to email provider later.
-    await new Promise((r) => setTimeout(r, 700));
-    setState("success");
-    form.reset();
-  }
-
   return (
     <section className="container-page pt-20 pb-24 md:pt-28 md:pb-32">
       <div className="grid gap-14 md:grid-cols-12 md:gap-16">
@@ -63,7 +22,7 @@ function ContactPage() {
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
             Contact
           </p>
-          <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl text-balance">
+          <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-foreground md:text-5xl text-balance text-gradient">
             Let's build something good together.
           </h1>
           <p className="mt-5 text-base leading-relaxed text-muted-foreground text-pretty">
@@ -74,10 +33,14 @@ function ContactPage() {
             <div>
               <dt className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Email</dt>
               <dd className="mt-1.5">
-                <a href={SITE.socials.email} className="text-sm text-foreground link-underline">
-                  {SITE.email}
+                <a href="mailto:godwinbanda19@gmail.com" className="text-sm text-foreground link-underline">
+                  godwinbanda19@gmail.com
                 </a>
               </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.14em] text-muted-foreground">WhatsApp</dt>
+              <dd className="mt-1.5 text-sm text-foreground">+260 973 848 066</dd>
             </div>
             <div>
               <dt className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Location</dt>
@@ -95,110 +58,46 @@ function ContactPage() {
         </Reveal>
 
         <Reveal delayMs={120} className="md:col-span-7">
-          <form onSubmit={handleSubmit} noValidate className="rounded-3xl border border-border bg-card p-6 md:p-8">
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field id="name" label="Name" error={errors.name}>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  maxLength={100}
-                  required
-                  className="input"
-                  placeholder="Jane Doe"
-                />
-              </Field>
-              <Field id="email" label="Email" error={errors.email}>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  maxLength={255}
-                  required
-                  className="input"
-                  placeholder="jane@studio.com"
-                />
-              </Field>
+          <div className="rounded-3xl border border-border bg-card p-8 md:p-12 flex flex-col items-center justify-center text-center h-full">
+            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent-soft text-accent">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
             </div>
+            <h2 className="font-display text-2xl font-semibold text-foreground">
+              Ready to start?
+            </h2>
+            <p className="mt-3 text-muted-foreground text-pretty max-w-sm mx-auto">
+              I'm available for freelance work and open to new opportunities. Reach out via WhatsApp or Email.
+            </p>
 
-            <div className="mt-5">
-              <Field id="message" label="Message" error={errors.message}>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={6}
-                  maxLength={2000}
-                  required
-                  className="input resize-y"
-                  placeholder="Tell me about the project, timeline, and where you're stuck."
-                />
-              </Field>
-            </div>
-
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-xs text-muted-foreground">
-                I respect your inbox — no marketing, ever.
-              </p>
-              <button
-                type="submit"
-                disabled={state === "submitting"}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-elevated disabled:cursor-not-allowed disabled:opacity-60"
+            <div className="mt-8 flex flex-col w-full gap-4 sm:flex-row sm:justify-center">
+              <a
+                href="https://wa.me/260973848066"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 hover:shadow-elevated"
               >
-                {state === "submitting" ? "Sending…" : "Send message"}
-              </button>
-            </div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                </svg>
+                WhatsApp
+              </a>
 
-            {state === "success" && (
-              <div
-                role="status"
-                className="mt-6 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground"
+              <a
+                href="mailto:godwinbanda19@gmail.com"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-elevated"
               >
-                Thanks — your message landed safely. I'll reply soon.
-              </div>
-            )}
-          </form>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+                  <path d="m2 4 10 8 10-8" />
+                </svg>
+                Email Me
+              </a>
+            </div>
+          </div>
         </Reveal>
       </div>
-
-      {/* tiny stylesheet helper for inputs */}
-      <style>{`
-        .input {
-          width: 100%;
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-radius: 0.75rem;
-          padding: 0.75rem 0.875rem;
-          font-size: 0.875rem;
-          color: var(--color-foreground);
-          transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
-        }
-        .input::placeholder { color: var(--color-muted-foreground); opacity: 0.7; }
-        .input:focus { outline: none; border-color: var(--color-ring); box-shadow: 0 0 0 4px var(--accent-soft); }
-      `}</style>
     </section>
-  );
-}
-
-function Field({
-  id,
-  label,
-  error,
-  children,
-}: {
-  id: string;
-  label: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <label htmlFor={id} className="block text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-        {label}
-      </label>
-      <div className="mt-2">{children}</div>
-      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
-    </div>
   );
 }

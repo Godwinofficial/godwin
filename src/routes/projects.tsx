@@ -49,11 +49,10 @@ function ProjectsPage() {
                 type="button"
                 onClick={() => setFilter(f)}
                 aria-pressed={active}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all ${
-                  active
-                    ? "border-foreground bg-foreground text-background"
-                    : "border-border bg-surface text-muted-foreground hover:text-foreground hover:border-border-strong"
-                }`}
+                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-all ${active
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border bg-surface text-muted-foreground hover:text-foreground hover:border-border-strong"
+                  }`}
               >
                 {f}
               </button>

@@ -3,25 +3,24 @@
 
 export const SITE = {
   name: "Godwin Banda",
-  role: "Full Stack Developer",
+  role: "Full Stack & Mobile Developer",
   shortBio:
-    "Full stack developer crafting fast, accessible web products with React, Django, and a careful eye for detail.",
+    "Full stack and mobile developer crafting fast, accessible web products and native apps (Android/iOS) with React Native, Django, and a careful eye for detail.",
   longBio:
-    "I'm Godwin — a full stack developer who enjoys turning complex problems into clean, dependable products. I work across the stack with React and modern JavaScript on the front end, and Python with Django on the back end. My focus is on shipping interfaces that feel calm and inevitable, paired with backends that are simple to reason about and easy to maintain.",
-  location: "Available worldwide · Remote",
-  email: "godwin@example.com",
+    "I'm Godwin — a full stack and mobile developer based in Zambia who enjoys turning complex problems into clean, dependable products. I work across the stack with React, React Native for iOS & Android, and Python with Django on the back end. My focus is on shipping interfaces that feel calm and inevitable, paired with backends that are simple to reason about and easy to maintain.",
+  location: "Zambia",
+  email: "godwinbanda19@gmail.com",
   // Replace with the real GitHub username — drives the /activity page.
-  githubUsername: "godwinbanda",
+  githubUsername: "Godwinofficial",
   socials: {
-    github: "https://github.com/godwinbanda",
-    linkedin: "https://www.linkedin.com/in/godwinbanda",
-    x: "https://x.com/godwinbanda",
-    email: "mailto:godwin@example.com",
+    github: "https://github.com/Godwinofficial",
+    linkedin: "https://www.linkedin.com/in/godwinbanda19",
+    email: "mailto:godwinbanda19@gmail.com",
   },
   stats: [
-    { label: "Years building", value: "5+" },
+    { label: "Years building", value: "7+" },
     { label: "Projects shipped", value: "30+" },
-    { label: "Stacks mastered", value: "2" },
+    { label: "Stacks mastered", value: "3" },
   ],
 };
 
@@ -50,26 +49,11 @@ export const SKILLS = [
 
 export const EXPERIENCE = [
   {
-    role: "Senior Full Stack Developer",
-    company: "Independent / Freelance",
-    period: "2023 — Present",
-    summary:
-      "Designing and building bespoke web platforms for startups and small teams. Specialising in React front ends backed by Django APIs.",
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Northwind Studio",
-    period: "2021 — 2023",
-    summary:
-      "Led the rebuild of a multi-tenant SaaS dashboard. Migrated a legacy monolith to a Django REST + React stack, improving load times by 60%.",
-  },
-  {
-    role: "Software Engineer",
-    company: "Brightline Labs",
-    period: "2019 — 2021",
-    summary:
-      "Shipped customer-facing features across the stack. Owned the design system and drove accessibility from AA to AAA on key flows.",
-  },
+    role: 'Senior Full Stack & Mobile Developer',
+    company: 'Independent / Freelance',
+    period: '2019 — Present',
+    summary: 'Partnering directly with founders, startups, and creative agencies to design and build bespoke web platforms and native mobile apps (Android & iOS). Specialising in React, React Native, and robust Django APIs. Handled everything from initial architecture and UI design to deployment and ongoing maintenance for dozens of successful projects based in Zambia and globally.',
+  }
 ];
 
 export type Project = {
@@ -85,25 +69,33 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "savemeaseatzambia",
+    title: "Save Me A Seat Zambia",
+    tagline: "Digital Invitations Platform",
+    description:
+      "As CEO and Developer, I built this platform for creating, sending, and managing beautiful digital invitations for events across Zambia.",
+    stack: ["React", "Django", "PostgreSQL", "React Native"],
+    liveUrl: "https://savemeaseatzambia.com",
+    featured: true,
+  },
+  {
+    slug: "zellion",
+    title: "Zellion",
+    tagline: "Finding Houses & Stays Nearby",
+    description:
+      "Co-founder and CTO. Zellion is a comprehensive platform designed to help users seamlessly find housing and short-term stays nearby.",
+    stack: ["React Native", "Android", "iOS", "Django", "Python"],
+    liveUrl: "https://zellionhomes.com",
+    featured: true,
+  },
+  {
     slug: "atlas",
     title: "Atlas",
     tagline: "Project management for small teams",
     description:
       "A focused project tracker with realtime updates, keyboard-first navigation, and a clean kanban board.",
     stack: ["React", "TypeScript", "Django", "PostgreSQL"],
-    liveUrl: "https://example.com/atlas",
     repoUrl: "https://github.com/godwinbanda/atlas",
-    featured: true,
-  },
-  {
-    slug: "lumen",
-    title: "Lumen",
-    tagline: "Headless CMS for editorial teams",
-    description:
-      "A Django-powered headless CMS with a React admin, version history, and a clean publishing workflow.",
-    stack: ["Django", "Python", "React", "PostgreSQL"],
-    liveUrl: "https://example.com/lumen",
-    repoUrl: "https://github.com/godwinbanda/lumen",
     featured: true,
   },
   {
@@ -115,7 +107,6 @@ export const PROJECTS: Project[] = [
     stack: ["React", "JavaScript", "Tailwind CSS"],
     liveUrl: "https://example.com/pixel-ledger",
     repoUrl: "https://github.com/godwinbanda/pixel-ledger",
-    featured: true,
   },
   {
     slug: "quill",
@@ -147,3 +138,36 @@ export const PROJECTS: Project[] = [
 ];
 
 export const PROJECT_FILTERS = ["All", "React", "Django", "Python", "JavaScript", "TypeScript"] as const;
+
+export const TESTIMONIALS = [
+  {
+    quote: "Godwin brought our vision to life with incredible attention to detail. The new platform is not only beautiful but incredibly fast.",
+    author: "Sarah Jenkins",
+    role: "Founder, TechStart",
+  },
+  {
+    quote: "A true professional. He completely re-architected our legacy backend without any downtime, and the code quality is top-notch.",
+    author: "David Chen",
+    role: "CTO, Northwind",
+  },
+  {
+    quote: "Working with Godwin was a breeze. He communicates clearly, delivers on time, and always suggests the best technical approach.",
+    author: "Elena Rodriguez",
+    role: "Product Manager, Brightline",
+  },
+];
+
+export const FAQS = [
+  {
+    question: "Are you available for freelance work?",
+    answer: "Yes, I am currently accepting new freelance and contract projects. Please reach out via the contact form to discuss your needs.",
+  },
+  {
+    question: "What is your typical process?",
+    answer: "I start with a discovery phase to understand your requirements, followed by UI/UX design if needed. Then, I move into iterative development with regular check-ins, concluding with testing and deployment.",
+  },
+  {
+    question: "Do you work with agencies?",
+    answer: "Absolutely. I frequently partner with design and creative agencies to handle the technical implementation of their projects.",
+  },
+];
